@@ -1,34 +1,14 @@
 require('dotenv').config();
 import express, {Application, Request, Response} from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import dns from 'dns';
 
-import { findUrls, allUrlsCount, createNewUrlEntry, getUrlById } from './mongodb'
+import { findUrls, createNewUrlEntry, getUrlById } from './mongodb'
 
 // Basic Configuration 
 const app: Application = express();
 const port = process.env.PORT || 3000;
-
-// // Mongo DB connection
-// mongoose.connect(process.env.MONGO_URI!, { useNewUrlParser: true, useUnifiedTopology: true });
-
-// // Setup Url schema
-// const Schema = mongoose.Schema;
-
-// const urlSchema = new Schema({
-//     id: {
-//         type: Number,
-//         required: true,
-//     }, 
-//     url: {
-//         type: String,
-//         required: true,
-//     }
-// });
-
-// const Url = mongoose.model('Url', urlSchema);
 
 // Middleware
 app.use(cors());
