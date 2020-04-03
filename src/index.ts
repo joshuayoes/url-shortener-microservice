@@ -5,7 +5,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dns from 'dns';
 
-import { findUrls, allUrlsCount, createNewUrlEntry } from './mongodb'
+import { findUrls, allUrlsCount, createNewUrlEntry, getUrlById } from './mongodb'
 
 // Basic Configuration 
 const app: Application = express();
@@ -98,6 +98,18 @@ app.post('/api/shorturl/new', async (req: Request, res: Response) => {
         // send error if invalid url 
         return res.status(500).send(err)
     }
+})
+
+// redirect users to url in database
+app.get('/api/shorturl/:id', async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const { url } = await getUrlById(id);
+
+    res.writeHead(302, {
+        "Location": url 
+    })
+
+    res.end();
 })
 
 // Mount server

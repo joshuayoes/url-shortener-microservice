@@ -34,11 +34,6 @@ export const allUrlsCount = async (): Promise<number> => {
     return allUrls;
 }
 
-// interface MongooseUrl {
-//     id: number;
-//     url: string;
-// } 
-
 export const createNewUrlEntry = async (url: string): Promise<any> => {
     const newId = (await allUrlsCount()) + 1;
     
@@ -48,4 +43,12 @@ export const createNewUrlEntry = async (url: string): Promise<any> => {
     });
 
     return await newUrl.save();
+}
+
+export const getUrlById = async (id: number): Promise<any> => {
+    const query = Url.find({ id });
+
+    const ids = await query.exec();
+
+    return ids[0];
 }
