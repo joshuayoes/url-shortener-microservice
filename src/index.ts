@@ -47,7 +47,7 @@ app.post('/api/shorturl/new', async (req: Request, res: Response) => {
         await dnsLookup(host);
     } catch {
         // send error if invalid url 
-        return res.status(400).json({
+        return res.json({
             "error": "invalid URL"
         })
     };

@@ -52,7 +52,7 @@ app.post('/api/shorturl/new', (req, res) => __awaiter(void 0, void 0, void 0, fu
     }
     catch (_a) {
         // send error if invalid url 
-        return res.status(400).json({
+        return res.json({
             "error": "invalid URL"
         });
     }
