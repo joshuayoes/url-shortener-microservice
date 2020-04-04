@@ -1,7 +1,11 @@
 import mongoose from 'mongoose';
 
 // Mongo DB connection
-mongoose.connect(process.env.MONGO_URI!, { useNewUrlParser: true, useUnifiedTopology: true });
+if (process.env.MONGO_URI === undefined) {
+    throw Error('Please include MONGO_URI in your .env file in the root directory')
+}
+
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Setup Url schema
 const Schema = mongoose.Schema;
